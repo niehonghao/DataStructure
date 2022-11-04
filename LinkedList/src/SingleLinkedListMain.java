@@ -31,20 +31,84 @@ public class SingleLinkedListMain {
         singleLinkedList.update(newHeroNode);
 
         //删除一个结点
-        singleLinkedList.deleteNode(1);
-        singleLinkedList.deleteNode(4);
-        singleLinkedList.deleteNode(2);
-        singleLinkedList.deleteNode(3);
+//        singleLinkedList.deleteNode(1);
+//        singleLinkedList.deleteNode(4);
+//        singleLinkedList.deleteNode(2);
+//        singleLinkedList.deleteNode(3);
+
 
         //显示
         singleLinkedList.list();
+
+        //统计链表中有效结点的个数
+        System.out.println("有效的结点个数：" + getLength(singleLinkedList.getHead()));
+
+        //测试：倒数第k个元素
+        HeroNode res=findLastIndexNode(singleLinkedList.getHead(),1);
+        System.out.println("res="+res);
     }
+
+    //查找单链表中的倒数第k个结点【新浪面试题】
+
+    /**
+     * 思路
+     * 1.编写一个方法，接收head这个结点，同时接收一个index
+     * 2.index 表示的是倒数第index个结点
+     * 3.先把链表从头到尾遍历，得到链表的总的长度 getLength
+     * 4.得到size后，我们从链表的第一个开始遍历（size-index）个
+     * 5.找到则返回该结点，否则返回null
+     */
+    public static HeroNode findLastIndexNode(HeroNode head, int index) {
+        if (head.next == null) {//链表为空
+            return null;//没有找到
+        }
+        //第一个遍历得到链表的长度
+        int size = getLength(head);
+        /**
+         * 第二次遍历 size-index 位置就是我们倒数的第k个结点
+         * 先做一个index的校验
+         */
+        if(index<=0||index>size){
+            return null;
+        }
+        //定义辅助变量，for循环定位到倒数的结点
+        HeroNode cur=head.next;
+        for (int i = 0; i < size - index; i++) {
+            cur=cur.next;
+        }
+        return cur;
+    }
+
+    //获取单链表的结点个数（如果是带头结点的链表，要求不统计头结点）
+
+    /**
+     * @param head 链表的头结点
+     * @return 有效结点的个数
+     */
+    public static int getLength(HeroNode head) {
+        if (head.next == null) {//空链表
+            return 0;
+        }
+        int length = 0;
+        //定义一个辅助变量，没有统计头结点
+        HeroNode cur = head.next;
+        while (cur != null) {
+            length++;
+            cur = cur.next;
+        }
+        return length;
+    }
+
 }
 
 //定义SingleLinkedList 管理我们的英雄
 class SingleLinkedList {
     //先初始化一个头结点，头结点不要动
     private HeroNode head = new HeroNode(0, "", "");
+
+    public HeroNode getHead() {
+        return head;
+    }
 
     //添加结点到单向链表
 
