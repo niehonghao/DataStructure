@@ -42,15 +42,36 @@ public class SingleLinkedListMain {
 
         //统计链表中有效结点的个数
         System.out.println("有效的结点个数：" + getLength(singleLinkedList.getHead()));
-
         //测试：倒数第k个元素
-        HeroNode res=findLastIndexNode(singleLinkedList.getHead(),1);
-        System.out.println("res="+res);
+        HeroNode res = findLastIndexNode(singleLinkedList.getHead(), 1);
+        System.out.println("res=" + res);
+        //测试：单链表反转
+        reverseList(singleLinkedList.getHead());
+        singleLinkedList.list();
     }
 
-    //将单链表进行反转
-    public void reverseList(HeroNode head) {
-
+    //将单链表进行反转【腾讯面试题】
+    public static void reverseList(HeroNode head) {
+        //如果当前链表为空，或者只有一个链表，无需反转，直接返回
+        if (head.next == null || head.next.next == null) {
+            return;
+        }
+        //定义辅助指针，帮助遍历原来的链表
+        HeroNode cur = head.next;
+        HeroNode next = null;//指向当前结点[cur]的下一个结点
+        HeroNode reverseHead = new HeroNode(0, "", "");
+        /**
+         * 遍历原来的链表
+         * 每遍历一个结点，就将其取出，并放在新的链表reverseHead的最前端
+         */
+        while (cur != null) {
+            next = cur.next;//暂时保存当前结点的下一个结点，后面需要使用
+            cur.next = reverseHead.next;//将cur的下一个结点指向新的链表的最前端
+            reverseHead.next = cur;//
+            cur = next;//让cur后移
+        }
+        //将head.next指向reverseHead.next，实现单链表的反转
+        head.next = reverseHead.next;
     }
 
 
@@ -74,13 +95,13 @@ public class SingleLinkedListMain {
          * 第二次遍历 size-index 位置就是我们倒数的第k个结点
          * 先做一个index的校验
          */
-        if(index<=0||index>size){
+        if (index <= 0 || index > size) {
             return null;
         }
         //定义辅助变量，for循环定位到倒数的结点
-        HeroNode cur=head.next;
+        HeroNode cur = head.next;
         for (int i = 0; i < size - index; i++) {
-            cur=cur.next;
+            cur = cur.next;
         }
         return cur;
     }
