@@ -48,6 +48,12 @@ public class SingleLinkedListMain {
         System.out.println("res="+res);
     }
 
+    //将单链表进行反转
+    public void reverseList(HeroNode head) {
+
+    }
+
+
     //查找单链表中的倒数第k个结点【新浪面试题】
 
     /**
