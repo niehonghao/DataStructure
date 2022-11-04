@@ -23,6 +23,21 @@ public class SingleLinkedListMain {
 
         //显示
         singleLinkedList.list();
+
+        //测试修改结点代码
+        System.out.println();
+        System.out.println("修改后的链表");
+        HeroNode newHeroNode = new HeroNode(2, "小卢", "玉麒麟--");
+        singleLinkedList.update(newHeroNode);
+
+        //删除一个结点
+        singleLinkedList.deleteNode(1);
+        singleLinkedList.deleteNode(4);
+        singleLinkedList.deleteNode(2);
+        singleLinkedList.deleteNode(3);
+
+        //显示
+        singleLinkedList.list();
     }
 }
 
@@ -90,6 +105,66 @@ class SingleLinkedList {
             //插入链表
             heroNode.next = temp.next;
             temp.next = heroNode;
+        }
+    }
+
+    /**
+     * 修改结点的信息，根据no编号来修改，即no编号不能改
+     * 1.根据newHeroNode的no来修改即可
+     */
+    public void update(HeroNode newHeroNode) {
+        //判断是否为空
+        if (head.next == null) {
+            System.out.println("链表为空");
+            return;
+        }
+        //找到需要修改的结点，根据no编号
+        //定义一个辅助变量
+        HeroNode temp = head.next;
+        boolean flag = false;//表示是否找到该结点
+        while (true) {
+            if (temp == null) {
+                break;//已经遍历完链表
+            }
+            if (temp.no == newHeroNode.no) {
+                //找到
+                flag = true;
+                break;
+            }
+            temp = temp.next;
+        }
+        //根据flag判断是否找到要修改的结点
+        if (flag) {
+            temp.name = newHeroNode.name;
+            temp.nickName = newHeroNode.nickName;
+        } else {//没有找到这个结点
+            System.out.printf("没有找到编号%d的结点，不能修改\n", newHeroNode.no);
+        }
+    }
+
+    /**
+     * 删除结点
+     */
+    public void deleteNode(int no) {
+        //定义辅助结点
+        HeroNode temp = head;
+        boolean flag = false;//标示是否找到待删除结点
+        while (true) {
+            if (temp.next == null) {//已经到链表的最后
+                break;
+            }
+            if (temp.next.no == no) {
+                //找到待删除结点前一个结点temp
+                flag = true;
+                break;
+            }
+            temp = temp.next;
+        }
+        if (flag) {
+            //删除结点
+            temp.next=temp.next.next;
+        }else{
+            System.out.printf("没有找到要删除的%d结点，结点不存在\n",no);
         }
     }
 
