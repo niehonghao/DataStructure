@@ -161,3 +161,34 @@ rear%maxSize+1=front%maxSize
    1. 先找到需要删除的这个结点的前一个结点temp
    2. `temp.next=temp.next.next`
    3. 被删除的结点，将不会有其他引用指向，会被垃圾回收机制回收
+
+#### 获取单链表中有效结点的个数
+
+获取单链表中有效结点的个数，如果是带头结点的链表，要求不统计头结点
+
+1. 判断是不是空链表
+2. 定义辅助变量，并不要包含头结点 `HeroNode cur=head.next`
+3. 遍历统计有效结点的个数
+
+#### 查找单链表中的倒数第k个结点
+
+**【新浪面试题】**
+
+思路
+
+1. 编写一个方法 `findLastIndexNode`  ，来接收head这个结点，同时接受一个index
+2. index表示的是倒数第index个结点
+3. 先把链表从头到尾遍历一遍，得到链表的长度getLength
+4. 得到size之后，我们从链表的第一个开始遍历（size-index）个
+5. index校验
+6. 找到则返回，没有找到返回null
+
+#### 单链表的反转
+
+**【腾讯面试题】**
+
+思路
+
+1. 先定义一个结点reverseHead
+2. 从头到尾遍历原来的链表，将其取出，并放在新的链表reverseHead的最前端
+3. 原来的链表的head.next=reverseHead.next
