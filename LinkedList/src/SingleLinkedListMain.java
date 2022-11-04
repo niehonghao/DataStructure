@@ -162,9 +162,9 @@ class SingleLinkedList {
         }
         if (flag) {
             //删除结点
-            temp.next=temp.next.next;
-        }else{
-            System.out.printf("没有找到要删除的%d结点，结点不存在\n",no);
+            temp.next = temp.next.next;
+        } else {
+            System.out.printf("没有找到要删除的%d结点，结点不存在\n", no);
         }
     }
 
