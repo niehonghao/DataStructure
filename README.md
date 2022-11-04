@@ -191,4 +191,6 @@ rear%maxSize+1=front%maxSize
 
 1. 先定义一个结点reverseHead
 2. 从头到尾遍历原来的链表，将其取出，并放在新的链表reverseHead的最前端
+   1. 取出来结点的next更新，将头结点的next赋值给取出来的新结点
+   2. reverseHead的next更新，reverseHead的next指向取出来的结点
 3. 原来的链表的head.next=reverseHead.next
