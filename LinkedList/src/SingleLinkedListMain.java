@@ -55,7 +55,7 @@ public class SingleLinkedListMain {
     }
 
     /**
-     * 逆序打印单链表
+     * 逆序打印单链表【百度面试题】
      * 利用Stack
      */
     public static void reversePrint(HeroNode head) {
