@@ -64,11 +64,11 @@ public class SingleLinkedListMain {
         }
         //创建一个stack，将各个结点压入栈中
         Stack<HeroNode> stack = new Stack<>();
-        HeroNode cur=head.next;
+        HeroNode cur = head.next;
         //将链表的所有结点压入栈中
         while (cur != null) {
             stack.push(cur);
-            cur=cur.next;
+            cur = cur.next;
         }
         //将栈中的结点进行打印
         while (stack.size() > 0) {
