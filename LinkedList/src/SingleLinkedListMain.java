@@ -1,4 +1,3 @@
-import javax.xml.soap.Node;
 import java.util.Stack;
 
 public class SingleLinkedListMain {
@@ -76,7 +75,6 @@ public class SingleLinkedListMain {
         }
     }
 
-
     //将单链表进行反转【腾讯面试题】
     public static void reverseList(HeroNode head) {
         //如果当前链表为空，或者只有一个链表，无需反转，直接返回
@@ -100,7 +98,6 @@ public class SingleLinkedListMain {
         //将head.next指向reverseHead.next，实现单链表的反转
         head.next = reverseHead.next;
     }
-
 
     //查找单链表中的倒数第k个结点【新浪面试题】
 
@@ -152,7 +149,6 @@ public class SingleLinkedListMain {
         }
         return length;
     }
-
 }
 
 //定义SingleLinkedList 管理我们的英雄
@@ -285,7 +281,6 @@ class SingleLinkedList {
             System.out.printf("没有找到要删除的%d结点，结点不存在\n", no);
         }
     }
-
 
     //显示链表（遍历）
     public void list() {
