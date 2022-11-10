@@ -14,20 +14,20 @@ public class ArrayStackMain {
             System.out.println("push：表示添加数据到栈【入栈】");
             System.out.println("pop：表示从栈取出数据【出栈】");
             System.out.println("请输入你的选择");
-            key=scanner.next();
+            key = scanner.next();
             switch (key) {
                 case "show":
                     stack.list();
                     break;
                 case "push":
                     System.out.println("请输入一个数");
-                    int data=scanner.nextInt();
+                    int data = scanner.nextInt();
                     stack.push(data);
                     break;
                 case "pop":
                     try {
                         int res = stack.pop();
-                        System.out.printf("出栈的数据%d\n",res);
+                        System.out.printf("出栈的数据%d\n", res);
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
                     }
@@ -35,7 +35,7 @@ public class ArrayStackMain {
                 case "exit":
                     //关闭scanner流
                     scanner.close();
-                    loop=false;
+                    loop = false;
                     break;
                 default:
                     break;
