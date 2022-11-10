@@ -11,6 +11,7 @@ public class Calculator {
         int oper = 0;
         int res = 0;
         char ch = ' ';//将每次扫描到的char保存到ch
+        String keepNum = "";//用于拼接
         //开始用while循环扫描expression
         while (true) {
             //依次得到expression的每一个字符
@@ -41,7 +42,24 @@ public class Calculator {
                     operStack.push(ch);
                 }
             } else {//如果是数字，入数栈
-                numStack.push(ch - 48);
+                /**
+                 * 1.当处理多位数的时，不能发现是一个数就立即入栈，因为他可能是多位数
+                 * 2.在处理数，需要向expression的表达式的index后再看一位，如果是数就继续扫描，如果是符号就入栈
+                 * 3.因此我们需要定义一个变量字符串，用于拼接
+                 */
+                keepNum += ch;
+                //如果ch已经是expression的最后一位，就直接入栈
+                if (index == expression.length() - 1) {
+                    numStack.push(Integer.parseInt(keepNum));
+                } else {
+                    //判断下一个字符是不是数字，如果是数字，则继续扫描，如果是运算符，则入栈
+                    if (operStack.isOper(expression.substring(index + 1, index + 2).charAt(0))) {
+                        //如果后一位是运算符，则入栈
+                        numStack.push(Integer.parseInt(keepNum));
+                        //重要：keepNum清空
+                        keepNum = "";
+                    }
+                }
             }
             //让index+1，并判断是否扫描到expression的最后
             index++;
@@ -62,7 +80,7 @@ public class Calculator {
             numStack.push(res);//入栈
         }
         //将数栈最后的数pop出来，即为结果
-        System.out.printf("表达式%s=%d",expression,numStack.pop());
+        System.out.printf("表达式%s=%d", expression, numStack.pop());
     }
 }
 
